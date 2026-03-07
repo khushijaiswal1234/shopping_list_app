@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spaces Shopping</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="app-header">
+            <div class="user-greeting">
+                <h1>My Spaces</h1>
+                <p>What are we shopping for today?</p>
+            </div>
+            <div class="profile-pic" id="profile-btn" style="cursor: pointer;" aria-label="Open Profile">
+                <img src="https://i.pravatar.cc/100?img=5" alt="Profile">
+            </div>
+        </header>
+
+        <!-- Main Content Area: Dashboard (List of Spaces) -->
+        <main id="dashboard-view" class="view active">
+
+            <div class="spaces-grid" id="spaces-container">
+                <!-- Spaces will be injected here by JS -->
+            </div>
+
+            <button class="fab" id="add-space-btn" aria-label="Add new space">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </main>
+
+        <!-- Main Content Area: Single List View -->
+        <main id="list-view" class="view hidden">
+            <header class="list-header">
+                <button id="back-btn" class="icon-btn" aria-label="Go back">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <div class="list-title-area">
+                    <h2 id="current-list-title">Groceries</h2>
+                    <span class="list-progress-text" id="current-list-progress-txt">0/0</span>
+                </div>
+                <button class="icon-btn" aria-label="List options">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </button>
+            </header>
+
+            <!-- Progress Bar -->
+            <div class="list-progress-bar-container">
+                <div class="list-progress-bar-fill" id="current-list-progress-fill"></div>
+            </div>
+
+            <!-- List Items -->
+            <ul class="shopping-list" id="items-container">
+                <!-- Items injected by JS -->
+            </ul>
+
+            <!-- Add Item Input -->
+            <div class="add-item-bar">
+                <form id="add-item-form">
+                    <input type="text" id="new-item-input" placeholder="Add a new item..." autocomplete="off">
+                    <button type="submit" class="submit-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </main>
+
+        <!-- Main Content Area: Profile View -->
+        <main id="profile-view" class="view hidden">
+            <header class="list-header">
+                <button id="profile-back-btn" class="icon-btn" aria-label="Go back to dashboard">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <div class="list-title-area">
+                    <h2>My Profile</h2>
+                </div>
+            </header>
+
+            <div class="profile-details">
+                <img src="https://i.pravatar.cc/100?img=5" alt="Profile" class="large-profile-pic">
+                <h3>Sarah Jenkins</h3>
+                <p>sarah.j@example.com</p>
+            </div>
+
+            <section class="family-section">
+                <div class="section-header">
+                    <h3>Family Members</h3>
+                </div>
+
+                <ul class="family-list" id="family-members-container">
+                    <!-- Members injected by JS -->
+                </ul>
+            </section>
+
+            <button class="fab" id="add-member-btn" aria-label="Add family member">
+                <i class="fa-solid fa-user-plus"></i>
+            </button>
+        </main>
+
+        <!-- Modals -->
+        <div id="add-space-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Create New Space</h3>
+                    <button class="close-modal-btn" id="close-space-modal"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <form id="new-space-form">
+                    <div class="form-group">
+                        <label for="space-name">Space Name</label>
+                        <input type="text" id="space-name" placeholder="e.g., Target Run, Hardware Store" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Accent Color</label>
+                        <div class="color-picker" id="color-picker-container">
+                            <!-- Colors generated by JS -->
+                        </div>
+                    </div>
+                    <button type="submit" class="primary-btn">Create Space</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="add-member-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Add Family Member</h3>
+                    <button class="close-modal-btn" id="close-member-modal"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <form id="new-member-form">
+                    <div class="form-group">
+                        <label for="member-name">Member Name</label>
+                        <input type="text" id="member-name" placeholder="e.g., John, Emily" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="member-role">Role (Optional)</label>
+                        <input type="text" id="member-role" placeholder="e.g., Spouse, Child">
+                    </div>
+                    <button type="submit" class="primary-btn">Add Member</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal-backdrop hidden" id="modal-backdrop"></div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

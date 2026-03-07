@@ -1,0 +1,718 @@
+/* =========================================
+   CSS Variables & Design System
+   ========================================= */
+:root {
+    /* Colors - Warm & Premium Aesthetic */
+    --bg-color: #faf9f6;
+    /* Very warm, off-white background */
+    --surface-color: #ffffff;
+    --text-primary: #2c2b29;
+    --text-secondary: #71706b;
+    --border-color: #eae8e1;
+
+    /* Interactive Colors */
+    --primary-color: #ff6b6b;
+    /* Warm coral/red */
+    --primary-hover: #fa5a5a;
+    --success-color: #38bdf8;
+    /* Soft blue for completion */
+
+    /* Category Colors - Available for Spaces */
+    --cat-1: #ffb86c;
+    /* Orange/Yellow */
+    --cat-2: #ff79c6;
+    /* Pink */
+    --cat-3: #8be9fd;
+    /* Cyan */
+    --cat-4: #50fa7b;
+    /* Green */
+    --cat-5: #bd93f9;
+    /* Purple */
+
+    /* Typography */
+    --font-family: 'Outfit', sans-serif;
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.12);
+
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-pill: 9999px;
+
+    /* Transitions */
+    --transition-fast: 0.15s ease-out;
+    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================
+   Reset & Base Styles
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    /* Limit max width for a mobile-app feel on desktop */
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: inherit;
+}
+
+input {
+    font-family: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* =========================================
+   Layout Containers
+   ========================================= */
+.app-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    box-shadow: var(--shadow-lg);
+    /* Only visible on wide screens */
+}
+
+/* View switching */
+.view {
+    padding: 0 24px 100px 24px;
+    transition: opacity var(--transition-normal), transform var(--transition-normal);
+}
+
+.view.hidden {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.view.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================
+   Header
+   ========================================= */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 24px 24px 24px;
+}
+
+.user-greeting h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+}
+
+.user-greeting p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 300;
+}
+
+.profile-pic img {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-pill);
+    object-fit: cover;
+    border: 2px solid var(--surface-color);
+    box-shadow: var(--shadow-sm);
+}
+
+/* =========================================
+   Dashboard (Spaces Grid)
+   ========================================= */
+.spaces-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.space-card {
+    background-color: var(--surface-color);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+    height: 160px;
+    position: relative;
+    overflow: hidden;
+}
+
+.space-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.space-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: auto;
+    /* Pushes content below to the bottom */
+    color: var(--surface-color);
+}
+
+.space-info h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.space-info p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* Card Progress Bar */
+.card-progress {
+    height: 4px;
+    background-color: var(--border-color);
+    border-radius: var(--radius-pill);
+    margin-top: 12px;
+    overflow: hidden;
+}
+
+.card-progress-fill {
+    height: 100%;
+    border-radius: var(--radius-pill);
+    transition: width var(--transition-normal);
+}
+
+/* Empty State Card */
+.space-card.empty-state {
+    border: 2px dashed var(--border-color);
+    background-color: transparent;
+    box-shadow: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.space-card.empty-state:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: none;
+}
+
+.space-card.empty-state i {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+
+/* =========================================
+   List View Items
+   ========================================= */
+.list-header {
+    display: flex;
+    align-items: center;
+    padding: 24px 0;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-color);
+    z-index: 10;
+}
+
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-pill);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    background-color: var(--surface-color);
+    box-shadow: var(--shadow-sm);
+    transition: background-color var(--transition-fast);
+}
+
+.icon-btn:hover {
+    background-color: var(--border-color);
+}
+
+.list-title-area {
+    flex: 1;
+}
+
+.list-title-area h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.list-progress-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Main Progress Bar */
+.list-progress-bar-container {
+    height: 8px;
+    background-color: var(--border-color);
+    border-radius: var(--radius-pill);
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+
+.list-progress-bar-fill {
+    height: 100%;
+    background-color: var(--success-color);
+    border-radius: var(--radius-pill);
+    width: 0%;
+    transition: width var(--transition-normal);
+}
+
+/* Items List */
+.shopping-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.list-item {
+    background-color: var(--surface-color);
+    padding: 16px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-fast);
+}
+
+.list-item.completed {
+    opacity: 0.6;
+    background-color: transparent;
+    box-shadow: none;
+    border: 1px solid var(--border-color);
+}
+
+.list-item.completed .item-name {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+}
+
+/* Custom Checkbox */
+.checkbox-container {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    background-color: transparent;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    transition: all var(--transition-fast);
+}
+
+.checkbox-container input:checked~.checkmark {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 8px;
+    top: 4px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-container input:checked~.checkmark:after {
+    display: block;
+}
+
+.item-name {
+    flex: 1;
+    font-weight: 500;
+    font-size: 1.05rem;
+    transition: color var(--transition-fast);
+}
+
+.delete-btn {
+    color: #ff4757;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    padding: 8px;
+}
+
+.list-item:hover .delete-btn {
+    opacity: 1;
+}
+
+/* =========================================
+   Profile View & Family Members
+   ========================================= */
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 0 40px 0;
+}
+
+.large-profile-pic {
+    width: 96px;
+    height: 96px;
+    border-radius: var(--radius-pill);
+    object-fit: cover;
+    border: 3px solid var(--surface-color);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 16px;
+}
+
+.profile-details h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.profile-details p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.family-section {
+    background-color: var(--surface-color);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.section-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.family-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.family-member-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.family-member-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.member-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-pill);
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.member-info {
+    flex: 1;
+}
+
+.member-info h4 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.member-info p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.remove-member-btn {
+    color: #ff4757;
+    padding: 8px;
+    opacity: 0.5;
+    transition: opacity var(--transition-fast);
+}
+
+.remove-member-btn:hover {
+    opacity: 1;
+}
+
+/* =========================================
+   Add Item / Add Space Buttons (FAB & Form)
+   ========================================= */
+.fab {
+    position: fixed;
+    bottom: 32px;
+    right: max(24px, calc(50% - 576px));
+    /* Keeps it inside the 1200px container */
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-pill);
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.8rem;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition-fast), background-color var(--transition-fast);
+    z-index: 50;
+}
+
+.fab:hover {
+    transform: scale(1.05);
+    background-color: var(--primary-hover);
+}
+
+.add-item-bar {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 48px);
+    max-width: calc(1200px - 48px);
+    background-color: var(--surface-color);
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-md);
+    padding: 8px;
+    z-index: 50;
+}
+
+#add-item-form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#add-item-form input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 12px 16px;
+    font-size: 1rem;
+    outline: none;
+    color: var(--text-primary);
+}
+
+#add-item-form input::placeholder {
+    color: var(--text-secondary);
+}
+
+.submit-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-pill);
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-fast);
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+/* =========================================
+   Modals
+   ========================================= */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    opacity: 1;
+    transition: opacity var(--transition-normal);
+}
+
+.modal-backdrop.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    background-color: var(--surface-color);
+    width: 90%;
+    max-width: 400px;
+    border-radius: var(--radius-lg);
+    z-index: 101;
+    box-shadow: var(--shadow-lg);
+    opacity: 1;
+    transition: all var(--transition-normal);
+}
+
+.modal.hidden {
+    opacity: 0;
+    transform: translate(-50%, -45%) scale(0.95);
+    pointer-events: none;
+}
+
+.modal-content {
+    padding: 24px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.modal-header h3 {
+    font-size: 1.25rem;
+}
+
+.close-modal-btn {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+.form-group input[type="text"]:focus {
+    border-color: var(--primary-color);
+}
+
+.color-picker {
+    display: flex;
+    gap: 12px;
+}
+
+.color-option {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform var(--transition-fast);
+}
+
+.color-option:hover {
+    transform: scale(1.1);
+}
+
+.color-option.selected {
+    border-color: var(--text-primary);
+    transform: scale(1.1);
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 16px;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: var(--radius-md);
+    margin-top: 8px;
+}
+
+.primary-btn:hover {
+    background-color: var(--primary-hover);
+}
