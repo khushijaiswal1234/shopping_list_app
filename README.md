@@ -22,3 +22,9 @@ feat: implement application state management
 - Implemented renderSpaces, renderActiveSpace and renderFamilyMembers
 - Injected dynamic content into DOM
 - Enabled real-time UI updates based on state
+
+feat: implement shopping list item functionality
+
+- Added add, delete and toggle item features
+- Updated progress tracking dynamically
+- Sorted items based on completion status
