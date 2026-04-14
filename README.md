@@ -28,3 +28,15 @@ feat: implement shopping list item functionality
 - Added add, delete and toggle item features
 - Updated progress tracking dynamically
 - Sorted items based on completion status
+
+feat: add functionality to create and manage shopping spaces
+
+- Implemented add space modal with color picker
+- Enabled dynamic creation of new spaces
+- Assigned icons and colors to spaces
+
+feat: implement family member management
+
+- Added add/remove family member functionality
+- Created dynamic rendering for member list
+- Integrated modal for adding new members
